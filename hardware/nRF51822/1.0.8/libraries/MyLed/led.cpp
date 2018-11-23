@@ -6,18 +6,8 @@ LEDClass::LEDClass(byte p, bool onval)
 	pinMode(cpin, OUTPUT);
 }
 
-LEDClass::~LEDClass()
+LEDClass::~LEDClass(void)
 {
 	off();
 	pinMode(cpin, INPUT);
-}
-
-void LEDClass::on()
-{
-	digitalWrite(cpin, onval ? HIGH : LOW);
-}
-
-void LEDClass::off()
-{
-	digitalWrite(cpin, onval ? LOW : HIGH);
 }
