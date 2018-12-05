@@ -1,5 +1,5 @@
-#ifndef __LED_h__
-#define __LED_h__
+#ifndef __LED_H__
+#define __LED_H__
 
 #include <Arduino.h>
 
@@ -114,5 +114,15 @@ private:
 	bool onval;
 	LED_TypeDef  sLed;
 };
+
+#ifdef	BLE400
+
+LEDClass	B_LED0(9,  true);
+LEDClass	B_LED1(8,  true);
+LEDClass	B_LED2(18, true);
+LEDClass	B_LED3(4,  true);
+LEDClass	B_LED4(17, true);
+
+#endif
 
 #endif
