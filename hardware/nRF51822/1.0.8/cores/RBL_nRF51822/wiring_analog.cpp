@@ -2,6 +2,7 @@
 #include "Arduino.h"
 #include "wiring_analog.h"
 
+
 //initialize default
 static uint32_t analogReference_ext_type    = EXT_REFSEL_NONE;
 static uint32_t analogReference_ref_type    = REFSEL_VDD_1_3_PS;
@@ -133,7 +134,10 @@ void analogWrite(uint32_t pin, uint32_t value)
     MBED_ASSERT(nrf_pin != (PinName)NC);
 
     num = getMatchChannel(nrf_pin);
+
+
     if(num < 3) {
+	    
         /* Channel has exit, Write value */
         // if( value == 0 )
         // {
@@ -164,7 +168,8 @@ void analogWrite(uint32_t pin, uint32_t value)
         obj.pwm = (PWMName)num;
         pwmout_write(&obj, duty);
     }
-    else {
+    else { 
+      	
         num = getFreeChannel();
         if(num >= 3)
             return;

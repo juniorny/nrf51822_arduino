@@ -56,7 +56,7 @@ static const PinMap PinMap_PWM[] = {
 };
 
 static NRF_TIMER_Type *Timers[1] = {
-    NRF_TIMER2
+    NRF_TIMER2,
 };
 
 uint16_t PERIOD            = 20000 / TIMER_PRECISION;  //20ms
@@ -71,7 +71,7 @@ uint16_t ACTUAL_PULSE[NO_PWMS] = {0, 0, 0};
 extern "C" {
 #endif
 void TIMER2_IRQHandler(void)
-{
+{	
     NRF_TIMER2->EVENTS_COMPARE[3] = 0;
     NRF_TIMER2->CC[3]             =  PERIOD;
 
@@ -87,12 +87,12 @@ void TIMER2_IRQHandler(void)
 
     NRF_TIMER2->TASKS_START = 1;
 }
-
 #ifdef __cplusplus
 }
 #endif
 /** @brief Function for initializing the Timer peripherals.
  */
+ 
 void timer_init(uint8_t pwmChoice)
 {
     NRF_TIMER_Type *timer = Timers[0];
@@ -114,6 +114,7 @@ void timer_init(uint8_t pwmChoice)
     NVIC_EnableIRQ(TIMER2_IRQn);
 
     timer->TASKS_START = 0x01;
+
 }
 
 static void timer_free()
